@@ -23,14 +23,25 @@ public class Splash extends AppCompatActivity {
                 .build());
         setContentView(R.layout.activity_splash);
 
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        a.reset();
+        TextView tv = (TextView) findViewById(R.id.splashtext);
+        tv.clearAnimation();
+        tv.startAnimation(a);
+
+        final Animation b = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+        b.reset();
+
+
+
         Thread background = new Thread() {
             public void run() {
 
                 try {
-                    // Thread will sleep for 5 seconds
-                    sleep(5 * 1000);
+                    // sleep for 3 seconds
+                    sleep(3 * 1000);
 
-                    // After 5 seconds redirect to another intent
+                    //redirect to new main
                     Intent i = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(i);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -44,7 +55,26 @@ public class Splash extends AppCompatActivity {
             }
         };
 
+        Thread fadeout = new Thread() {
+            public void run() {
+
+                try {
+                    sleep(1 * 1000);
+                    TextView ta = (TextView) findViewById(R.id.splashtext);
+                    ta.clearAnimation();
+                    ta.startAnimation(b);
+
+                    finish();
+
+                } catch (Exception e) {
+
+
+                }
+            }
+        };
         // start thread
+
+        fadeout.start();
         background.start();
     }
 
@@ -54,12 +84,5 @@ public class Splash extends AppCompatActivity {
     }
 
 
-    private void RunAnimation() {
-        Animation a = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        a.reset();
-        TextView tv = (TextView) findViewById(R.id.splashtext);
-        tv.clearAnimation();
-        tv.startAnimation(a);
-    }
 
 }
