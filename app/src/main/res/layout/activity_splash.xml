@@ -17,4 +17,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         fontPath="fonts/knip.ttf"/>
+
+
+
+
+
 </RelativeLayout>

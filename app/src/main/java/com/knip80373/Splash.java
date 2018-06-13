@@ -38,8 +38,9 @@ public class Splash extends AppCompatActivity {
             public void run() {
 
                 try {
-                    // sleep for 3 seconds
-                    sleep(3 * 1000);
+                    // sleep for 1 seconds
+                    sleep(1 * 1000);
+
 
                     //redirect to new main
                     Intent i = new Intent(getBaseContext(), MainActivity.class);
@@ -55,26 +56,7 @@ public class Splash extends AppCompatActivity {
             }
         };
 
-        Thread fadeout = new Thread() {
-            public void run() {
 
-                try {
-                    sleep(1 * 1000);
-                    TextView ta = (TextView) findViewById(R.id.splashtext);
-                    ta.clearAnimation();
-                    ta.startAnimation(b);
-
-                    finish();
-
-                } catch (Exception e) {
-
-
-                }
-            }
-        };
-        // start thread
-
-        fadeout.start();
         background.start();
     }
 
